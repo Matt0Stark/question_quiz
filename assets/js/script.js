@@ -5,6 +5,8 @@ var timersec = 60;
 var currentQuestionIndex = 0;
 var quizScoreCounter = 0;
 
+RenderScoreboard();
+
 var questions = [
 
     {
@@ -44,8 +46,9 @@ function start() {
         timerCount.textContent = timersec;
         if (timersec === 0) {
             clearInterval(timeInterval);
-            // endGame();
+            resetScreen()
         }
+
         
     }, 1000);
     displayquestion();
@@ -57,7 +60,7 @@ function resetScreen(){
 
 //custome attribute not populating with buttons
 function displayquestion(){
-    resetScreen();
+    resetScreen()
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
     pTag.textContent = currentQuestion.question;
@@ -76,19 +79,24 @@ function displayquestion(){
 
 
 function answerIsCorrect(){
-//clear the previous question
 quizScoreCounter++;
 };
 
-function answerIsWrong(){
-//clear the previous question
-//subtract time from the counter
-};
+// function answerIsWrong(){
+// //subtract time from the counter
+// };
 
 
 function endGame(){
+   
+  //prompt user to enter initials
+  //store user initials input and quizScoreCounter in local storage
+};
 
-}
+function RenderScoreboard(){
+    //get all stored initials/quiz score pairs(bonus points for sorted from highest to lowerst.)
+    //displays somewhere on the screen
+};
 
 questionArea.addEventListener("click", function(event){
     var currentQuestion =questions[currentQuestionIndex];
