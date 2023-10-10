@@ -13,16 +13,16 @@ var questions = [
         correct: "4",
     },
 
-    // {
-    //     question: "what is 2+2",
-    //     answer: [],
-    //     correct: "",
-    // },
-    // {
-    //     question: "what is 2+2",
-    //     answer: [],
-    //     correct: "",
-    // },
+    {
+        question: "what is 2+3",
+        answer: ["3","4","5","6"],
+        correct: "5",
+    },
+    {
+        question: "what is 2+6",
+        answer: ["7","8","9","3"],
+        correct: "8",
+    },
     // {
     //     question: "what is 2+2",
     //     answer: [],
@@ -37,7 +37,6 @@ var questions = [
 ]
 
 
-// }
 
 function start() {
 
@@ -52,16 +51,13 @@ function start() {
         // is this setting the speed of time interval? or length of time on timer???
     }, 1000);
     displayquestion();
-}
+};
 
 function displayquestion(){
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
     pTag.textContent = currentQuestion.question;
     questionArea.appendChild(pTag);
-
-    // foreach(function(currentQuestion.answer))
-
 
     for( var i = 0; i < currentQuestion.answer.length; i++){
         var answer = currentQuestion.answer[i];
@@ -73,24 +69,24 @@ function displayquestion(){
 };
 
 
-// function answerIsCorrect(){
+function answerIsCorrect(){
 
-// };
+};
 
-// function answerIsWrong(){
+function answerIsWrong(){
 
-// };
+};
 
-// questionArea.addEventListener("click", function(event){
-//     var currentQuestion =questions[currentQuestionIndex];
-//     if(event.target.matches("button")){
-//         answerIsCorrect();
-//     } else {
-//         answerIsWrong();
-//     }
-//     currentQuestionIndex++;
-//     displayquestion();
-// });
+questionArea.addEventListener("click", function(event){
+    var currentQuestion =questions[currentQuestionIndex];
+    if(event.target.matches("button")){
+        answerIsCorrect();
+    } else {
+        answerIsWrong();
+    }
+    currentQuestionIndex++;
+    displayquestion();
+});
 
 
 startButton.addEventListener("click", start);
