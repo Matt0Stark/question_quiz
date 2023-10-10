@@ -1,9 +1,9 @@
 var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
 var questionArea = document.querySelector(".question-area");
-
 var timersec = 60;
 var currentQuestionIndex = 0;
+var quizScoreCounter = 0;
 
 var questions = [
 
@@ -23,37 +23,41 @@ var questions = [
         answer: ["7","8","9","3"],
         correct: "8",
     },
-    // {
-    //     question: "what is 2+2",
-    //     answer: [],
-    //     correct: "",
-    // },
-    // {
-    //     question: "what is 2+2",
-    //     answer: [],
-    //     correct: "",
-    // },
+    {
+        question: "what is 2+1",
+        answer: ["2","3","9","7"],
+        correct: "3",
+    },
+    {
+        question: "what is 2+5",
+        answer: ["7","8","3","6"],
+        correct: "7",
+    },
 
 ]
-
 
 
 function start() {
 
     var timeInterval = setInterval(function () {
-        //is this setting the timer?
         timersec--;
         timerCount.textContent = timersec;
         if (timersec === 0) {
-            clearInterval(timeInterval)
-            // determain if the user won or lost
+            clearInterval(timeInterval);
+            // endGame();
         }
-        // is this setting the speed of time interval? or length of time on timer???
+        
     }, 1000);
     displayquestion();
 };
 
+function resetScreen(){
+    questionArea.innerHTML="";
+};
+
+//custome attribute not populating with buttons
 function displayquestion(){
+    resetScreen();
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
     pTag.textContent = currentQuestion.question;
@@ -63,24 +67,35 @@ function displayquestion(){
         var answer = currentQuestion.answer[i];
         var btn = document.createElement("button");
         btn.textContent = answer;
+        // btn.setAttribute=("data-answer" or "id", currentQuestion.answer[i]);
         questionArea.appendChild(btn);
     };
-
+    
+        //else send to end screen
 };
 
 
 function answerIsCorrect(){
-
+//clear the previous question
+quizScoreCounter++;
 };
 
 function answerIsWrong(){
-
+//clear the previous question
+//subtract time from the counter
 };
+
+
+function endGame(){
+
+}
 
 questionArea.addEventListener("click", function(event){
     var currentQuestion =questions[currentQuestionIndex];
     if(event.target.matches("button")){
-        answerIsCorrect();
+        if (event.target.getAttribute("id")===currentQuestion.correct){
+            answerIsCorrect();
+        }
     } else {
         answerIsWrong();
     }
