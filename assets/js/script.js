@@ -2,20 +2,50 @@ var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
 var questionArea = document.querySelector(".question-area");
 
-var timersec = 0;
-// var currentQuestionIndex = 0;
+var timersec = 60;
+var currentQuestionIndex = 0;
 
-// var questions = {
+var questions = [
+
+    {
+        question: "what is 2+2",
+        answer: ["1","2","3","4"],
+        correct: "4",
+    },
+
+    // {
+    //     question: "what is 2+2",
+    //     answer: [],
+    //     correct: "",
+    // },
+    // {
+    //     question: "what is 2+2",
+    //     answer: [],
+    //     correct: "",
+    // },
+    // {
+    //     question: "what is 2+2",
+    //     answer: [],
+    //     correct: "",
+    // },
+    // {
+    //     question: "what is 2+2",
+    //     answer: [],
+    //     correct: "",
+    // },
+
+]
+
 
 // }
 
 function start() {
-    timersec.textContent = timersec;
-    var timeInterval = setInterval(function(){
+
+    var timeInterval = setInterval(function () {
         //is this setting the timer?
         timersec--;
         timerCount.textContent = timersec;
-        if( timer === 0){
+        if (timersec === 0) {
             clearInterval(timeInterval)
             // determain if the user won or lost
         }
@@ -24,19 +54,23 @@ function start() {
     displayquestion();
 }
 
-// function displayquestion(){
-//     var currentQuestion = questions[currentQuestionIndex];
-//     var pTag = document.createElement("p");
-//     pTag.textContent = currentQuestion.question;
-//     questionArea.appendChild(pTag);
+function displayquestion(){
+    var currentQuestion = questions[currentQuestionIndex];
+    var pTag = document.createElement("p");
+    pTag.textContent = currentQuestion.question;
+    questionArea.appendChild(pTag);
 
-//     for( var i = 0; i < currentQuestion.answer.length; i++){
-//         var answer = currentQuestion.answer[i];
-//         var btn = document.createElement("button");
-//         questionArea.appendChild(btn);
-//     };
+    // foreach(function(currentQuestion.answer))
 
-// };
+
+    for( var i = 0; i < currentQuestion.answer.length; i++){
+        var answer = currentQuestion.answer[i];
+        var btn = document.createElement("button");
+        btn.textContent = answer;
+        questionArea.appendChild(btn);
+    };
+
+};
 
 
 // function answerIsCorrect(){
