@@ -1,46 +1,42 @@
 var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
 var questionArea = document.querySelector(".question-area");
+var scoreCount = document.querySelector(".score-count");
 var timersec = 60;
 var currentQuestionIndex = 0;
 var quizScoreCounter = 0;
-
+//what scoreboard?
 RenderScoreboard();
 
 var questions = [
-
     {
         question: "what is 2+2",
-        answer: ["1","2","3","4"],
-        correct: "4",
+        answer: ["one","two","three","four"],
+        correct: "four",
     },
-
     {
         question: "what is 2+3",
-        answer: ["3","4","5","6"],
-        correct: "5",
+        answer: ["three","four","five","six"],
+        correct: "five",
     },
     {
         question: "what is 2+6",
-        answer: ["7","8","9","3"],
-        correct: "8",
+        answer: ["two","eight","taco","nine"],
+        correct: "taco",
     },
     {
         question: "what is 2+1",
-        answer: ["2","3","9","7"],
-        correct: "3",
+        answer: ["one","three","nine","seven"],
+        correct: "three",
     },
     {
         question: "what is 2+5",
-        answer: ["7","8","3","6"],
-        correct: "7",
+        answer: ["seven","eight","three","six"],
+        correct: "seven",
     },
-
 ]
 
-
 function start() {
-
     var timeInterval = setInterval(function () {
         timersec--;
         timerCount.textContent = timersec;
@@ -48,19 +44,21 @@ function start() {
             clearInterval(timeInterval);
             resetScreen()
         }
-
-        
     }, 1000);
+    quiz();
+};
+
+function quiz(){
     displayquestion();
-};
 
-function resetScreen(){
-    questionArea.innerHTML="";
-};
+}
 
-//custome attribute not populating with buttons
+
+
 function displayquestion(){
-    resetScreen()
+    
+    startButton.setAttribute("style", "display: none");
+    resetScreen();
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
     pTag.textContent = currentQuestion.question;
@@ -69,28 +67,38 @@ function displayquestion(){
     for( var i = 0; i < currentQuestion.answer.length; i++){
         var answer = currentQuestion.answer[i];
         var btn = document.createElement("button");
+        console.log(btn);
         btn.textContent = answer;
-        // btn.setAttribute=("data-answer" or "id", currentQuestion.answer[i]);
+        btn.setAttribute("id", answer);
         questionArea.appendChild(btn);
+        console.log(btn);
     };
     
-        //else send to end screen
+       
 };
 
 
 function answerIsCorrect(){
 quizScoreCounter++;
+scoreCount.textContent = quizScoreCounter;
 };
 
-// function answerIsWrong(){
-// //subtract time from the counter
-// };
+
+function answerIsWrong(){
+    timersec -= 5;
+};
 
 
 function endGame(){
-   
+    // clearInterval(timeInterval);
+
+    var initials = prompt("Please enter your initials","JB")
   //prompt user to enter initials
   //store user initials input and quizScoreCounter in local storage
+};
+
+function resetScreen(){
+    questionArea.innerHTML="";
 };
 
 function RenderScoreboard(){
@@ -98,18 +106,28 @@ function RenderScoreboard(){
     //displays somewhere on the screen
 };
 
+//questions still have no idea if they are correct***
 questionArea.addEventListener("click", function(event){
-    var currentQuestion =questions[currentQuestionIndex];
+    var currentQuestion = questions[currentQuestionIndex];
     if(event.target.matches("button")){
-        if (event.target.getAttribute("id")===currentQuestion.correct){
+        if (event.target.id === currentQuestion.correct){
             answerIsCorrect();
+        } else {
+            answerIsWrong();
         }
-    } else {
-        answerIsWrong();
+        currentQuestionIndex++;
+        if (currentQuestionIndex === 5){
+            questionArea.innerHTML="";
+            // clearInterval(timeInterval);
+            endGame();
+        }else{
+            displayquestion();
+        }
+        console.log("wat");
+        // displayquestion();
     }
-    currentQuestionIndex++;
-    displayquestion();
 });
 
 
 startButton.addEventListener("click", start);
+
