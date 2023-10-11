@@ -2,12 +2,13 @@ var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
 var questionArea = document.querySelector(".question-area");
 var scoreCount = document.querySelector(".score-count");
-var timersec = 60;
+var timersec = 30;
 var currentQuestionIndex = 0;
 var quizScoreCounter = 0;
 //what scoreboard?
 RenderScoreboard();
 
+//done
 var questions = [
     {
         question: "what is 2+2",
@@ -22,7 +23,7 @@ var questions = [
     {
         question: "what is 2+6",
         answer: ["two","eight","taco","nine"],
-        correct: "taco",
+        correct: "eight",
     },
     {
         question: "what is 2+1",
@@ -42,19 +43,20 @@ function start() {
         timerCount.textContent = timersec;
         if (timersec === 0) {
             clearInterval(timeInterval);
-            resetScreen()
+            resetScreen();
         }
     }, 1000);
     quiz();
 };
 
+
 function quiz(){
     displayquestion();
 
-}
+};
 
 
-
+//done?
 function displayquestion(){
     
     startButton.setAttribute("style", "display: none");
@@ -77,36 +79,38 @@ function displayquestion(){
        
 };
 
-
+//done
 function answerIsCorrect(){
 quizScoreCounter++;
 scoreCount.textContent = quizScoreCounter;
 };
 
-
+//done
 function answerIsWrong(){
     timersec -= 5;
 };
 
-
+// should be  pushing noth the initials and the final state of the quiz score counter into local storage. will need to stringify JSON ob?
 function endGame(){
-    // clearInterval(timeInterval);
+    console.log("we made it to end of game")
+    var initials = prompt("Please enter your initials","JB");
+    console.log(initials)
 
-    var initials = prompt("Please enter your initials","JB")
-  //prompt user to enter initials
   //store user initials input and quizScoreCounter in local storage
 };
 
+//done
 function resetScreen(){
     questionArea.innerHTML="";
 };
 
+// will need to pull the obs, parse them, and put them somewhere on the page
 function RenderScoreboard(){
+    var scoreBoard = localStorage.getItem("");
     //get all stored initials/quiz score pairs(bonus points for sorted from highest to lowerst.)
     //displays somewhere on the screen
 };
 
-//questions still have no idea if they are correct***
 questionArea.addEventListener("click", function(event){
     var currentQuestion = questions[currentQuestionIndex];
     if(event.target.matches("button")){
@@ -118,16 +122,15 @@ questionArea.addEventListener("click", function(event){
         currentQuestionIndex++;
         if (currentQuestionIndex === 5){
             questionArea.innerHTML="";
-            // clearInterval(timeInterval);
             endGame();
         }else{
             displayquestion();
         }
-        console.log("wat");
-        // displayquestion();
+        
+        
     }
 });
 
-
+//done
 startButton.addEventListener("click", start);
 
