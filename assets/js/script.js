@@ -2,11 +2,15 @@ var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
 var questionArea = document.querySelector(".question-area");
 var scoreCount = document.querySelector(".score-count");
+var leaderBoard = document.querySelector("saved-player-scores");
 var timersec = 30;
 var currentQuestionIndex = 0;
 var quizScoreCounter = 0;
 //what scoreboard?
 RenderScoreboard();
+
+
+
 
 //done
 var questions = [
@@ -44,7 +48,10 @@ function start() {
         if (timersec === 0) {
             clearInterval(timeInterval);
             resetScreen();
-        }
+        } else  if (currentQuestionIndex === 5){
+            clearInterval(timeInterval);
+        };
+
     }, 1000);
     quiz();
 };
@@ -90,11 +97,32 @@ function answerIsWrong(){
     timersec -= 5;
 };
 
-// should be  pushing noth the initials and the final state of the quiz score counter into local storage. will need to stringify JSON ob?
+// should be  pushing both the initials and the final state of the quiz score counter into local storage. will need to stringify JSON ob?
 function endGame(){
     console.log("we made it to end of game")
     var initials = prompt("Please enter your initials","JB");
     console.log(initials)
+
+    var playerSubmission = {name: initials, score: quizScoreCounter};
+
+    console.log(playerSubmission)
+
+
+      
+
+                // const myObj = new Object();
+                // const myObj = {};
+                // const a = 'string1';
+                // myObj[a] = 'whatever';
+                // alert(myObj.string1);**? test?
+            
+
+                // push quizScoreCounter into new object, 
+                //push initials into new object
+    
+    // localStorage.setItem("playerSubmission", JSON.stringify(playerSubmission));
+    // renderMessage();
+    
 
   //store user initials input and quizScoreCounter in local storage
 };
@@ -106,11 +134,19 @@ function resetScreen(){
 
 // will need to pull the obs, parse them, and put them somewhere on the page
 function RenderScoreboard(){
-    var scoreBoard = localStorage.getItem("");
+    var scoreBoard = JSON.parse(localStorage.getItem(""));
+    console.log("am I rendering?")
+
+    if (scoreBoard !== null) {
+        document.querySelector("saved-player-scores").textContent = playerSubmission;
+      }
+
+
     //get all stored initials/quiz score pairs(bonus points for sorted from highest to lowerst.)
     //displays somewhere on the screen
 };
 
+//done?
 questionArea.addEventListener("click", function(event){
     var currentQuestion = questions[currentQuestionIndex];
     if(event.target.matches("button")){
