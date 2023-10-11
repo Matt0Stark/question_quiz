@@ -38,7 +38,7 @@ var questions = [
     },
 ]
 
-var playerStorage = [];
+var playerStorage = JSON.parse(localStorage.getItem("playerStorage")) || [];
 
 //done?
 function start() {
@@ -121,11 +121,19 @@ function RenderScoreboard(){
     var scoreBoard = JSON.parse(localStorage.getItem("playerStorage"));
     console.log("am I rendering?");
     console.log(scoreBoard);
-   
+    var scoreList = document.querySelector(".saved-player-scores");
 
-    if (scoreBoard !== null) {
-        console.log(scoreBoard)
-        document.querySelector(".saved-player-scores").textContent = scoreBoard.name + scoreBoard.score;
+
+    if (scoreBoard) {
+
+        for(i = 0; i < scoreBoard.length; i++){
+        
+            var li = document.createElement("li");
+            li.textContent = scoreBoard[i].name + scoreBoard[i].score;
+            scoreList.appendChild(li);
+
+        };
+
     };
 
 
