@@ -6,11 +6,8 @@ var leaderBoard = document.querySelector("saved-player-scores");
 var timersec = 30;
 var currentQuestionIndex = 0;
 var quizScoreCounter = 0;
-//what scoreboard?
-// RenderScoreboard();
 
-
-
+RenderScoreboard();
 
 //done
 var questions = [
@@ -41,6 +38,8 @@ var questions = [
     },
 ]
 
+var playerStorage = [];
+
 //done?
 function start() {
     var timeInterval = setInterval(function () {
@@ -60,7 +59,6 @@ function start() {
 //does this even need to be here as its own function?
 function quiz(){
     displayquestion();
-
 };
 
 
@@ -104,9 +102,11 @@ function endGame(){
     var initials = prompt("Please enter your initials","JB");
     console.log(initials);
     var playerSubmission = {name: initials, score: quizScoreCounter};
-    console.log(playerSubmission);
+    // push object to array
+    playerStorage.push(playerSubmission);
+    console.log(playerStorage);
  
-    localStorage.setItem("playerSubmission", JSON.stringify(playerSubmission));
+    localStorage.setItem("playerStorage", JSON.stringify(playerStorage));
     RenderScoreboard();
   //store user initials input and quizScoreCounter in local storage
 };
@@ -118,17 +118,20 @@ function resetScreen(){
 
 // will need to pull the obs, parse them, and put them somewhere on the page
 function RenderScoreboard(){
-    var scoreBoard = JSON.parse(localStorage.getItem("playerSubmission"));
+    var scoreBoard = JSON.parse(localStorage.getItem("playerStorage"));
     console.log("am I rendering?");
     console.log(scoreBoard);
+   
 
     if (scoreBoard !== null) {
-        // leaderBoard.textContent = scoreBoard.name + scoreBoard.score;
+        console.log(scoreBoard)
+        document.querySelector(".saved-player-scores").textContent = scoreBoard.name + scoreBoard.score;
     };
 
-    //     leaderBoard.textContent = scoreBoard; 
+
+    //    
     // loops for each thing in object?
-    //   }
+    //   
     //get all stored initials/quiz score pairs(bonus points for sorted from highest to lowerst.)
     //displays somewhere on the screen
 };
