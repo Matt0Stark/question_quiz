@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    <h2><span class="timer-count">30</span></h2>
-    <h2>Your current score is:<span class="score-count">0</span></h2>
-    <div class ="question-area"></div>
-    <button class="start-button">Start</button>
-    <h1>Leader Board:</h1>
-    <ul class ="saved-player-scores"></ul>
-    
+    <!-- make this an hourglass in v3 -->
+    <div class="clock">
+        <h2><span class="timer-count">30</span></h2>
+    </div>
+
+    <main class="quiz">
+        <div class="question-area"></div>
+        <button class="start-button">Start</button>
+        <h3 class="current-score">Your current score is:<span class="score-count">0</span></h3>
+    </main>
+
+    <div class="leader-board">
+        <h1>Leader Board:</h1>
+        <ul class="saved-player-scores"></ul>
+    </div>
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
