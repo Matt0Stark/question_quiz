@@ -1,5 +1,6 @@
 var startButton = document.querySelector(".start-button");
 var timerCount = document.querySelector(".timer-count");
+var clock = document.querySelector(".clock");
 var questionArea = document.querySelector(".question-area");
 var scoreCount = document.querySelector(".score-count");
 var leaderBoard = document.querySelector("saved-player-scores");
@@ -48,19 +49,14 @@ function start() {
         };
 
     }, 1000);
-    quiz();
-};
-
-//does this even need to be here as its own function?
-function quiz() {
     displayQuestion();
 };
-
 
 //done?
 function displayQuestion() {
 
     startButton.setAttribute("style", "display: none");
+    clock.setAttribute("style", "visibility: visible")
     resetScreen();
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
@@ -84,6 +80,7 @@ function displayQuestion() {
 function answerIsCorrect() {
     quizScoreCounter++;
     scoreCount.textContent = quizScoreCounter;
+    timersec += 10;
 };
 
 //done
@@ -124,16 +121,8 @@ function renderScoreboard() {
             scoreList.appendChild(li);
         };
     };
-
-
-    //    
-    // loops for each thing in object?
-    //   
-    //get all stored initials/quiz score pairs(bonus points for sorted from highest to lowerst.)
-    //displays somewhere on the screen
 };
 
-//done?
 questionArea.addEventListener("click", function (event) {
     var currentQuestion = questions[currentQuestionIndex];
     if (event.target.matches("button")) {
@@ -152,6 +141,5 @@ questionArea.addEventListener("click", function (event) {
     };
 });
 
-//done
 startButton.addEventListener("click", start);
 
