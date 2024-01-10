@@ -2,13 +2,15 @@
 /* core quiz styling functional*/
 
 
+
+/* TIME */
 .clock {
     visibility: hidden;
 }
 
 .timer-count {
     border: 3px inset #ca0bb0;
-    border-radius: 8px;
+    border-radius: 10px;
     
     color:#1a92b9;
     padding: 20px 20px;
@@ -16,23 +18,8 @@
     margin: 30px;
 }
 
+/* SCORE  */
 .score{
-    visibility: hidden;
-}
-
-
-.current-score {
-    border: 3px inset #ca0bb0;
-    border-radius: 8px;
-    
-    color:#1a92b9;
-    padding: 20px 20px;
-    font-size: 15px;
-    margin: 30px;
-}
-
-
-.leader-board {
     visibility: hidden;
 }
 
@@ -40,24 +27,39 @@
     visibility: hidden;
 }
 
+.score-count {
+    border: 3px inset #ca0bb0;
+    border-radius: 10px;
+    
+    color:#1a92b9;
+    padding: 20px 20px;
+    font-size: 15px;
+    margin: 30px;
+}
 
-
+.sidebar {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
 
 
 body {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     font-family: 'Arial', sans-serif;
     background-color: #0f0011;
 }
 
 .hourglass {
-    margin-left: 45px;
+    margin-left:50px;
 }
-
 .star {
-    margin-right:45px;
-}
+    margin-left:45px;
+} 
 
 p {
     color: #1e0122;
@@ -71,6 +73,8 @@ p {
     /* text-shadow: -1px -1px 0 #ca0bb0, 1px -1px 0 #ca0bb0, -1px 1px 0 #ca0bb0, 1px 1px 0 #ca0bb0; */
 }
 
+
+
 .question-area {
     display: flex;
     flex-direction: column;
@@ -78,8 +82,9 @@ p {
 }
 
 button {
-    display: block;
-    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px auto;
     padding: 10px 10px;
     font-size: 16px;
 
@@ -96,4 +101,9 @@ button {
 
 button:hover {
     background-color: #1a92b9;
+}
+
+/* END SCREEN */
+.leader-board {
+    visibility: hidden;
 }

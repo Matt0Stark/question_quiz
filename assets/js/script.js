@@ -1,18 +1,30 @@
+
+// Currently fine with the variable organization
 var startButton = document.querySelector(".start-button");
+
 var timerCount = document.querySelector(".timer-count");
 var clock = document.querySelector(".clock");
-var questionArea = document.querySelector(".question-area");
-var scoreCount = document.querySelector(".score-count");
-var leaderBoard = document.querySelector("saved-player-scores");
 var timersec = 30;
+
+var questionArea = document.querySelector(".question-area");
+var answerArea = document.querySelector(".answer-area");
 var currentQuestionIndex = 0;
+
+var score = document.querySelector(".score");
 var quizScoreCounter = 0;
+var scoreCount = document.querySelector(".score-count");
 
+var leaderBoard = document.querySelector("saved-player-scores");
+
+
+
+// Pulls in local storage for score keeping
 renderScoreboard();
+var playerStorage = JSON.parse(localStorage.getItem("playerStorage")) || [];
 
-//done
+// Answer arrays also need to be arrays of objects? for multi word answers the ID situation will likey need to be reconsidered
 var questions = [{
-    question: "what is 2+2",
+    question: "here is a rather large question to see what is going to happen to my question text area when real questions are populated into the question array",
     answer: ["one", "two", "three", "four"],
     correct: "four",
 }, {
@@ -34,9 +46,6 @@ var questions = [{
 },
 ]
 
-var playerStorage = JSON.parse(localStorage.getItem("playerStorage")) || [];
-
-//done?
 function start() {
     var timeInterval = setInterval(function () {
         timersec--;
@@ -56,8 +65,12 @@ function start() {
 function displayQuestion() {
 
     startButton.setAttribute("style", "display: none");
-    clock.setAttribute("style", "visibility: visible")
+    clock.setAttribute("style", "visibility: visible");
+    score.setAttribute("style", "visibility: visible");
+    scoreCount.setAttribute("style", "visibility: visible");
     resetScreen();
+
+
     var currentQuestion = questions[currentQuestionIndex];
     var pTag = document.createElement("p");
     pTag.textContent = currentQuestion.question;
@@ -78,8 +91,8 @@ function displayQuestion() {
 
 //done
 function answerIsCorrect() {
-    quizScoreCounter++;
     scoreCount.textContent = quizScoreCounter;
+    quizScoreCounter++;
     timersec += 10;
 };
 

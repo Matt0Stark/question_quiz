@@ -10,20 +10,25 @@
 
 <body>
     <!-- make this an hourglass in v3 -->
-    <div class="score">
-        <h4 class="star">⭐</h4>
-        <h3 class="current-score">Your current score is:<span class="score-count">0</span></h3>
+
+    <div class="sidebar">
+        <div class="clock">
+            <h4 class="hourglass">⏳</h4>
+            <h2><span class="timer-count">30</span></h2>
+        </div>
+
+        <div class="score">
+            <h4 class="star">⭐</h4>
+            <h3 class="current-score"><span class="score-count">0</span></h3>
+        </div>
     </div>
 
     <main class="quiz">
         <div class="question-area"></div>
+        <div class="answer-area"></div>
         <button class="start-button">Start</button>
     </main>
 
-    <div class="clock">
-        <h4 class="hourglass">⏳</h4>
-        <h2><span class="timer-count">30</span></h2>
-    </div>
 
     <div class="leader-board">
         <h1>Leader Board:</h1>
